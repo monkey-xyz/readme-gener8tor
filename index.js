@@ -1,13 +1,14 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const markdownft = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
     {
         type: 'input',
         message: 'Start small, what is your project name?',
-        name: 'name',
+        name: 'title',
     },
     {
         type: 'input',
@@ -21,18 +22,14 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'How is this project installed?',
-        name: 'installguide',
-    },
-    {
-        type: 'input',
         message: 'How is this project used?',
         name: 'usage',
     },
     {
-        type: 'input',
+        type: 'list',
         message: 'What is your license?',
         name: 'license',
+        choices: ['BSD','MIT','GPL','None'],
     },
     {
         type: 'input',
@@ -58,47 +55,8 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    let readMeTemplate = `
-# ${data.name}
 
-## Description
-
-${data.summary}
-
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-* [Credits](#credits)
-* [License](#license)
-
-## Installation
-
-${data.installguide}
-
-## Usage
-
-${data.usage}
-
-## License
-
-${data.license}
-
-## Contributing
-
-${data.contribution}
-
-## Tests
-
-${data.tests}
-
-## Questions
-
-* [GitHub](${data.github})
-* [Email](${data.email})`
-
-    fs.writeFile(fileName, readMeTemplate, function(err){
+    fs.writeFile(fileName, markdownft.generateMarkdown(data), function(err){
         err ? console.error(err) : console.log('Your README has been generated.')})
 }
 
