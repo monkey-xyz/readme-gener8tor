@@ -1,26 +1,30 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if (license === 'BSD') {
-    
-  } else if (license === 'MIT') {
-
-  } else if (license === 'GPL') {
-
-  } else {
-    return ' ';
+  switch (license) {
+    case 'BSD 2-Clause':
+      '![BSD 2-Clause License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)';
+      break;
+    case 'BSD 3-Clause':
+      '![BSD 3-Clause License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)';
+      break;
+    case 'MIT':
+      '![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
+      break;
+    case 'Creative Commons':
+      '![CC License](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)';
+      break;
+    case 'GPL':
+      '![GPL License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
+      break;
   }
-}
+} 
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  if (license === 'BSD') {
-    
-  } else if (license === 'MIT') {
-
-  } else if (license === 'GPL') {
-
+  if (license !== 'None') {
+    '[License](./LICENSE.txt)'
   } else {
     return ' ';
   }
@@ -37,7 +41,6 @@ function renderLicenseSection(license) {
     licenseSection;
     renderLicenseBadge();
     renderLicenseLink();
-    return;
   }
 }
 
@@ -65,8 +68,8 @@ function generateMarkdown(data) {
   ## Usage
   
   ${data.usage}
-  ${renderLicenseSection()}
-  
+  ${renderLicenseSection(data)}
+
   ## Contributing
   
   ${data.contribution}
