@@ -28,7 +28,7 @@ const questions = [
         name: 'usage',
     },
     {
-        type: 'list',
+        type: 'rawlist',
         message: 'What is your license?',
         name: 'license',
         choices: ['BSD 2-Clause','BSD 3-Clause','MIT','GPL','Creative Commons','None'],
@@ -70,7 +70,7 @@ function init() {
             questions
         )
         .then (function (data) {
-            writeToFile('READMETEMPLATE.md', data)
+            writeToFile('GENREADME.md', data)
         })
 }
 

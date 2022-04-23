@@ -2,20 +2,20 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   switch (license) {
-    case 'BSD 2-Clause':
+    case 1:
       '![BSD 2-Clause License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)';
       break;
-    case 'BSD 3-Clause':
+    case 2:
       '![BSD 3-Clause License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)';
       break;
-    case 'MIT':
+    case 3:
       '![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
       break;
-    case 'Creative Commons':
-      '![CC License](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)';
-      break;
-    case 'GPL':
+    case 4:
       '![GPL License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
+      break;
+    case 5:
+      '![CC License](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)';
       break;
   }
 } 
@@ -39,8 +39,8 @@ function renderLicenseSection(license) {
     return ' ';
   } else {
     licenseSection;
-    renderLicenseBadge();
-    renderLicenseLink();
+    renderLicenseBadge(license);
+    renderLicenseLink(license);
   }
 }
 
@@ -68,7 +68,10 @@ function generateMarkdown(data) {
   ## Usage
   
   ${data.usage}
-  ${renderLicenseSection(data)}
+
+  ## License
+
+  ${data.license} License
 
   ## Contributing
   
